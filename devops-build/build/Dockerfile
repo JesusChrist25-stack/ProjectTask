@@ -1,8 +1,9 @@
 FROM node:20-alpine
-WORKDIR /app
-COPY package*.json .
-RUN npm install
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+COPY manifest.json .
 COPY . .
-RUN npm run build
-CMD [ "nginx", "-g", "daemon off"]
+EXPOSE 3000
+CMD ["node"]
+
 
